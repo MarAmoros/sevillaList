@@ -30,10 +30,13 @@ function onDeviceReady() {
         init();		
     });
     function init(){
-        $("#addButton").click(function(){
+        $("#addButton").click(function(){ //no funcionen els onClick a cordova es tenen que posar així 
             let newElement = $("#newTask").val();
-            $("#taskList").append("<li><a href='#'>"+newElement+"</a></li>");		
+            $("#taskList").append("<li>"+newElement+"<button id='boton"+newElement+"'>Delete</button></li>");		
+            // actualitzar estils
+            $(".ui-listview").listview("refresh")
         });
+       
     
     };
 }
