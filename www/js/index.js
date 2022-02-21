@@ -29,14 +29,28 @@ function onDeviceReady() {
     $(document).ready(function(){
         init();		
     });
+    $(document).ready(function(){ //no va
+        deleteTask();		
+    });
     function init(){
         $("#addButton").click(function(){ //no funcionen els onClick a cordova es tenen que posar així 
             let newElement = $("#newTask").val();
-            $("#taskList").append("<li>"+newElement+"<button id='boton"+newElement+"'>Delete</button></li>");		
+            //let tasks =[]
+            let tasks= JSON.parse(localStorage.task) // en bytes cordova
+            tasks[tasks.length-1] = newElement
+            console.log(tasks)
+            console.log(tasks.length)
+            localStorage.setItem("task",JSON.stringify(tasks))
+            $("#taskList").append("<li>"+newElement+"<button id='delete'>Delete</button></li>");		
             // actualitzar estils
             $(".ui-listview").listview("refresh")
         });
-       
-    
     };
+
+    function deleteTask(){ // no va
+        $("#delete").click(function(){
+            $("#taskList").removeChild("#newTask")
+        })
+    }
+
 }
